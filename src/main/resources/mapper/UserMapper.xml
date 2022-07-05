@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.reallyfun.server.mapper.UserMapper">
+    <!-- 插⼊数据：Integer insert(Example example) -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_user
+            (id,name,password,salt,email,avatar,auth,created_user,created_time,modified_user,modified_time)
+        VALUES
+            (#{id},#{name},#{password},#{salt},#{email},#{avatar},#{auth},#{createdUser},
+                #{createdTime},#{modifiedUser},#{modifiedTime})
+    </insert>
+    <!-- 根据eid删除数据：Example deleteByEid(Integer eid) -->
+    <delete id="deleteByUid">
+        DELETE
+        FROM t_user
+        WHERE id = #{id}
+    </delete>
+
+    <!-- 根据eid查询数据：Example findByEid(String eid) -->
+    <select id="findByUid" resultType="com.reallyfun.server.entity.User">
+        SELECT *
+        FROM t_user
+        WHERE id = #{id}
+    </select>
+
+    <select id="findByUname" resultType="com.reallyfun.server.entity.User">
+        SELECT *
+        FROM t_user
+        WHERE name = #{name}
+    </select>
+
+</mapper>
